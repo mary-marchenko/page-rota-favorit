@@ -210,6 +210,8 @@
           font-size: 34px
           width: 370px
           height: 90px
+        &-agit
+          font-size: 26px
     .form
       &__container
         padding-left: 0
@@ -240,6 +242,20 @@
     .footer
       margin: 50px auto
       padding-bottom: 20px
+      &__top
+        margin-bottom: 50px
+        &-insta
+          font-size: 22px
+          svg
+            width: 60px
+            height: 60px
+        &-img
+          width: 200px
+        &-email
+          font-size: 22px
+      &__bottom
+        p
+          font-size: 12px
 
 @media screen and (max-width: 1482px)
   body
@@ -370,5 +386,377 @@
         left: -18px
 
 @media screen and (max-width: 1172px)
+  body
+    .h2
+      margin: 30px 0 25px
+    li
+      font-size: 16px
+      line-height: 25px
+      margin-bottom: 20px
+    .container
+      &-l
+        width: 900px
+      &-m
+        width: 900px
+      &-s
+        width: 750px
+        margin-right: 30px
+  .page
+    .header
+      height: 486px
+      &__content
+        &-zsu
+          left: -464px
+          width: 149px
+          top: -70px
+        &-military
+          width: 299px
+          bottom: -48px
+          left: -345px
+    .about
+      &__content
+        height: 605px
+        .h1
+          width: 700px
+          font-size: 34px
+      &__left
+        width: 35%
+        font-size: 20px
+        line-height: 27px
+      &__right
+        width: 55%
+        &-txt
+          font-size: 16px
+          line-height: 23px
+      &__goal
+        width: 360px
+        font-size: 22px
+        line-height: 29px
+        bottom: -47px
+    .tasks
+      &__right
+        margin-bottom: 0
+    .photos
+      width: 809px
+      .slider
+        width: 994px
+        margin-right: -15px
+        height: 429px
+    .achievements
+      &__info
+        padding: 35px 40px 20px 13px
+      &__left
+        &-text
+          top: 40px
+      .decoration
+        &-drone1
+          left: -140px
+          top: 319px
+    .person
+      &__content
+        width: 900px
+      &__right
+        width: 61%
+      &__blockquote
+        font-size: 35px
+        line-height: 43px
+        &::before,
+          &::after
+          width: 78px
+          height: 40px
+      &__info
+        &-txt
+          font-size: 16px
+          line-height: 27px
+    .offer
+      &__recVideo
+        left: 23px
+      &__video
+        width: 300px
+        height: 240px
+        left: 23px
+        top: 82px
+      &__text
+        padding-left: 258px
+        &-left
+          width: 42%
+        &-right
+          width: 49%
+        li
+          font-size: 16px
+          &:before
+            top: 5px
+            width: 9px
+            height: 9px
+            left: -23px
+    .form
+      &__container
+        width: 925px
+        &-right
+          width: 49%
+      &__warning
+        font-size: 18px
+
+@media screen and (max-width: 990px)
+  body
+    .h2
+      font-size: 23px
+      margin: 42px 0 30px
+    li
+      font-size: 14px
+      line-height: 21px
+      margin-bottom: 17px
+    .container
+      &-l
+        width: 755px
+      &-m
+        width: 755px
+      &-s
+        width: 680px
+
+  .page
+    .header
+      height: 400px
+      &__content
+        &-zsu
+          left: -365px
+          width: 127px
+          top: -80px
+        &-military
+          width: 239px
+          bottom: -51px
+          left: -291px
+        &-name
+          width: 208px
+          margin-bottom: 15px
+        &-slogan
+          width: 350px
+          margin-bottom: 35px
+        &-btn
+          width: 154px
+          height: 32px
+          font-size: 13px
+    .about
+      &__content
+        height: 530px
+        .h1
+          font-size: 27px
+          width: 560px
+          margin: 0 auto 20px
+      &__left
+        font-size: 17px
+        line-height: 24px
+      &__right
+        width: 60%
+        &-txt
+          font-size: 14px
+          line-height: 22px
+      &__goal
+        padding: 40px 19px
+        width: 290px
+        font-size: 18px
+        line-height: 26px
+        bottom: -24px
+        &::before
+          width: 25px
+          height: 25px
+          top: -14px
+          left: calc(50% - 7px)
+    .tasks
+      &__content
+        padding-bottom: 25px
+      &__left
+        &-img
+          width: 200px
+    .photos
+      width: 800px
+      .slider
+        margin-right: 55px
+        &__btn
+          &-prev,
+            &-next
+              width: 30px
+              height: 30px
+          &-next
+            left: 17px
+        &__dot
+          width: 6px
+          height: 6px
+    .achievements
+      margin-bottom: 80px
+      &__left
+        &-img
+          width: 190px
+        &-text
+          left: -70px
+          top: 30px
+          font-size: 21px
+          line-height: 30px
+      &__info
+        padding: 53px 40px 24px 13px
+      &__right
+        li
+          &::before
+            width: 25px
+            height: 25px
+            top: -6px
+            left: -38px
+          &:not(:last-child)
+            margin-bottom: 40px
+      .decoration
+        &-drone1
+          display: none
+    .person
+      &__content
+        width: 755px
+      &__left
+        &-img
+          width: 200px
+          height: 200px
+          &::after
+            width: 210px
+            height: 210px
+            top: -9px
+            left: -9px
+            border: 4px solid $border-gray
+        &-inst
+          svg
+            width: 40px
+        &-caption
+          font-size: 17px
+          line-height: 24px
+          span
+            font-size: 24px
+      &__blockquote
+        font-size: 30px
+        line-height: 35px
+        &::before,
+          &::after
+          width: 62px
+          height: 32px
+          top: 19px
+      &__info
+        &-txt
+          font-size: 14px
+          line-height: 24px
+    .offer
+      margin-bottom: 25px
+      &__recVideo
+        width: 57px
+        left: -15px
+        &::before
+          width: 7px
+          height: 7px
+          left: 6px
+          top: 4px
+      &__video
+        left: -13px
+        width: 264px
+        height: 211px
+        top: 54px
+      &__text
+        padding-left: 240px
+        li
+          font-size: 14px
+          &:before
+            top: 4px
+            width: 6px
+            height: 6px
+            left: -18px
+    .join
+      &__top
+        .h2
+          font-size: 35px
+        &-right
+          width: 43%
+          font-size: 17px
+          line-height: 25px
+      &__bottom
+        &-age
+          font-size: 28px
+          width: 296px
+          height: 72px
+        &-agit
+          font-size: 22px
+    .form
+      height: max-content
+      padding-bottom: 90px
+      &__container
+        width: 755px
+        flex-direction: column
+        &-left,
+          &-right
+            display: flex
+            flex-direction: column
+            align-items: center
+            width: 100%
+      &__warning
+        bottom: -70px
+        text-align: center
+      &__input
+        font-size: 18px
+        height: 53px
+    .footer
+      &__top
+        &-insta
+          font-size: 18px
+          svg
+            width: 45px
+            height: 45px
+            margin-right: 12px
+        &-img
+          width: 130px
+        &-email
+          font-size: 18px
+
+@media screen and (max-width: 830px)
+  body
+    .container
+      &-l
+        width: 560px
+
+  .page
+    .header
+      height: 330px
+      &__content
+        top: 58px
+        &-military
+          width: 200px
+          bottom: -57px
+          left: -235px
+        &-zsu
+          left: -265px
+          width: 100px
+          top: -40px
+        &-name
+          width: 180px
+        &-slogan
+          width: 300px
+          margin-bottom: 25px
+    .about
+      &__content
+        padding-top: 18px
+        height: max-content
+      &__right
+        padding-top: 0
+        &-txt
+          margin-bottom: 20px
+      &__left
+        font-size: 16px
+        line-height: 22px
+        width: 50%
+        margin-right: 10px
+    .photos
+      width: 560px
+      .slider
+        margin-right: 0
+
+    //height:
+
+
+
+
+
+
 
 
