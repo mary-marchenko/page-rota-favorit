@@ -225,6 +225,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (isValid) {
                 const successMessage = form.querySelector('.form__success');
+                const formData = {
+                    surname: form.querySelector(".form__input-surname").value.trim(),
+                    firstName: form.querySelector(".form__input-first-name").value.trim(),
+                    middleName: form.querySelector(".form__input-middle-name").value.trim(),
+                    phone: form.querySelector(".form__input-phone").value.trim(),
+                    birthDate: form.querySelector(".form__input-date").value,
+                    telegramNick: form.querySelector(".form__input-telegram").value.trim(),
+                    region: form.querySelector(".form__input-region").value,
+                    isMilitary: form.querySelector(".form__input-radio:checked")?.value || "no",
+                    consent: form.querySelector(".form__input-checkbox").checked,
+                };
+
+                console.log("Form Data:", formData);
                 if (successMessage) {
                     successMessage.classList.add('visible');
 

@@ -96,8 +96,14 @@ let gulp = require('gulp')
             .pipe(gulp.dest('build/fonts'));
     });
 
+// COPY PHP
+    gulp.task('copyPHP', function(){
+        return gulp.src(['front/send_mail.php', 'front/PHPMailer/**'], { base: 'front' })
+            .pipe(gulp.dest('build'));
+    });
+
 //BUILD
-    gulp.task('build', gulp.series('clean', gulp.parallel('pug', 'sass', 'js', 'copyFonts', 'copyImg', 'copyJson')));
+    gulp.task('build', gulp.series('clean', gulp.parallel('pug', 'sass', 'js', 'copyFonts', 'copyImg', 'copyJson', 'copyPHP')));
 //STATIC SERVER
     gulp.task('server', function() {
         browserSync.init({
