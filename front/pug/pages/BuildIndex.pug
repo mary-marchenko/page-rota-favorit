@@ -1,0 +1,308 @@
+.page
+  .header
+    video(autoplay loop muted playsinline poster="img/fire.jpg").header__video
+      source(src="img/video/fire.mp4" type="video/mp4")
+      source(src="img/video/fire.webm" type="video/webm")
+    .header__content
+      .header__content-zsu
+        img(src="./img/zsu-logo.svg" alt="ЗСУ")
+      .header__content-military
+        picture
+          source(media="(max-width: 539px)" srcset="img/military-mob.png")
+          img(src="img/military.png" alt="Військовий")
+      .header__content-name
+        picture
+          source(media="(max-width: 539px)" srcset="img/logo-rota-mob.png")
+          img(src="img/logo-rota.png" alt="Логотип")
+      .header__content-slogan
+        picture
+          source(media="(max-width: 539px)" srcset="img/top-text-mob.png")
+          img(src="img/top-text.png" alt="Вільні та руйнівні")
+      button.header__content-btn Доєднатись
+
+  form.form.firstForm
+    .form__container.container-m
+      .form__container-left
+        .form__group
+          label.form__label Прізвище
+          input.form__input.form__input-surname(type="text" placeholder="Прізвище")
+
+        .form__group
+          label.form__label Ім'я
+          input.form__input.form__input-first-name(type="text" placeholder="Ім'я")
+
+        .form__group
+          label.form__label По-батькові
+          input.form__input.form__input-middle-name(type="text" placeholder="По-батькові")
+
+        .form__group
+          label.form__label Номер телефону
+          input.form__input.form__input-phone(type="tel" placeholder="+38 (0 ... ... ) ... ... ... ... ... ... ...")
+
+        .form__group
+          label.form__label Дата народження
+          input.form__input.form__input-date(type="date" value="2000-01-01" placeholder="Дата народження")
+      .form__container-right
+        .form__group
+          label.form__label Нік в телеграмі (опційно)
+          input.form__input.form__input-telegram(type="text" placeholder="Нік в телеграмі")
+
+        .form__group
+          label.form__label В якому регіоні ти проживаєш?
+          select.form__input.form__input-region
+            option(value="Автономна-Республіка-Крим") Автономна Республіка Крим
+            option(value="Вінницька" selected) Вінницька
+            option(value="Волинська") Волинська
+            option(value="Дніпропетровська") Дніпропетровська
+            option(value="Донецька") Донецька
+            option(value="Житомирська") Житомирська
+            option(value="Закарпатська") Закарпатська
+            option(value="Запорізька") Запорізька
+            option(value="Івано-Франківська") Івано-Франківська
+            option(value="Київська") Київська
+            option(value="Кіровоградська") Кіровоградська
+            option(value="Луганська") Луганська
+            option(value="Львівська") Львівська
+            option(value="Миколаївська") Миколаївська
+            option(value="Одеська") Одеська
+            option(value="Полтавська") Полтавська
+            option(value="Рівненська") Рівненська
+            option(value="Сумська") Сумська
+            option(value="Тернопільська") Тернопільська
+            option(value="Харківська") Харківська
+            option(value="Херсонська") Херсонська
+            option(value="Хмельницька") Хмельницька
+            option(value="Черкаська") Черкаська
+            option(value="Чернівецька") Чернівецька
+            option(value="Чернігівська") Чернігівська області
+
+        .form__group
+          label.form__label Чи є військовослужбовцем на даний момент?
+          .form__radio-group
+            label
+              input.form__input.form__input-radio(type="radio" name="yes-no" value="yes")
+              | Так
+            label
+              input.form__input.form__input-radio(type="radio" name="yes-no" value="no")
+              | Ні
+
+        .form__group
+          label.form__label.form__label-checkbox
+            input.form__input.form__input-checkbox(type="checkbox")
+            | Даю згоду на обробку моїх персональних даних
+
+        button.form__submit(type="submit") Подати заявку
+      p.form__warning Увага! Одне або декілька полів не заповнені належно. Будь ласка, перевірте їх і спробуйте ще раз.
+      .form__success Дякуємо за вашу заявку
+
+  .main
+    section.about
+      .about__content.container-l
+        h1.h1 Рота Ударних Безпілотних Авіаційних Комплексів (РУБАК) «Фаворит»
+        .about__info
+          .about__left
+            p Проводимо розвідувальні та ударні місії за допомогою дронів – знищуємо все, що рухається.
+          .about__right
+            p.about__right-txt Постійно переміщуємось по країні, зміцнюючи позиції ЗСУ та ТрО на найгарячіших точках. Виконуємо завдання на двох, трьох і навіть чотирьох ділянках фронту одночасно.
+            p.about__right-txt Колишні спортсмени та тренери в цивільному житті, а нині досвічені воїни та пілоти.
+            p.about__right-txt Нас об’єднує не лише захоплення спортом, а й професійне знання військової справи, здобуте на регулярних тренуваннях, і досвід, отриманий під час виконання складних бойових завдань.
+            p.about__right-txt Переважна більшість військовослужбовців починали свій військовий шлях як піхотинці, пройшли найважчі ділянки фронту та стали надійною опорою для своїх побратимів.
+            p.about__goal.fade-in Наша мета –<br> якнайбільше знищувати ворога та наближати нашу перемогу!
+
+    section.tasks.container-m
+      .tasks__content.container-s
+        h2.h2 Як ми це робимо:
+        .tasks__info
+          .tasks__left
+            img(src="img/emblem.png" alt="Favorit emblem").tasks__left-img
+          .tasks__right
+            ul
+              li Діємо злагоджено та швидко.
+              li Працюємо як один механізм.
+              li Дотримуємось дисципліни.
+              li Гартуємо витривалість.
+              li Плекаємо командний дух.
+              li Залучаємо високотехнологічні підходи.
+        img(src="img/base-icon.svg" alt="данні").decoration-base
+
+    section.photos.container-m
+      .slider
+        .slider__wrapper
+          .slider__slide
+            picture
+              source(media="(max-width: 539px)" srcset="img/slider/slide-1-mob.jpg")
+              img(src="img/slider/slide-1.jpg" alt="Фото")
+          .slider__slide
+            picture
+              source(media="(max-width: 539px)" srcset="img/slider/slide-2-mob.jpg")
+              img(src="img/slider/slide-2.jpg" alt="Фото")
+          .slider__slide
+            picture
+              source(media="(max-width: 539px)" srcset="img/slider/slide-3-mob.jpg")
+              img(src="img/slider/slide-3.jpg" alt="Фото")
+          .slider__slide
+            picture
+              source(media="(max-width: 539px)" srcset="img/slider/slide-4-mob.jpg")
+              img(src="img/slider/slide-4.jpg" alt="Фото")
+          .slider__slide
+            picture
+              source(media="(max-width: 539px)" srcset="img/slider/slide-5-mob.jpg")
+              img(src="img/slider/slide-5.jpg" alt="Фото")
+          button.slider__btn.slider__btn-prev
+          button.slider__btn.slider__btn-next
+          .slider__dots
+
+    section.achievements.container-m
+      .achievements__content.container-s
+        .achievements__info
+          .achievements__left
+            img(src="img/emblem-2.png" alt="Favorit emblem").achievements__left-img
+            p.achievements__left-text.slideInLeft За 2024 рік <br>ми знищили понад <br>50 одиниць ворожої <br>техніки та щонайменше <br>1000 окупантів
+            img(src="img/drone.png" alt="Дрон").decoration-drone1
+            img(src="img/drone.png" alt="Дрон").decoration-drone2
+            img(src="img/drone.png" alt="Дрон").decoration-drone3
+          .achievements__right
+            ul
+              li Брали участь у контрнаступі на Харківщині у вересні 2022 року.
+              li Виконували бойові завдання на Бахмутському, Лиманському та Авдіївському напрямках.
+              li Забезпечували нищівні удари по ворогу в Запорізькій області, на Курщині та поблизу Торецька.
+
+    section.person
+      .person__content.container-l
+        .person__left
+          a(href="https://www.instagram.com/denys_perch?igsh=YzNzZjk2Mnh2Y3J0" target="_blank").person__left-inst
+            svg(xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60" fill="none").inst-img
+              path(d="M29.9969 0C21.854 0 20.8291 0.0375039 17.6294 0.181269C14.436 0.325034 12.255 0.831337 10.3489 1.57516C8.37413 2.34399 6.70555 3.3691 5.03698 5.03177C3.3684 6.7007 2.34351 8.37587 1.57484 10.3448C0.831163 12.2513 0.324966 14.4328 0.181231 17.6268C0.0374961 20.8272 0 21.8523 0 29.9969C0 38.1415 0.0374961 39.1666 0.181231 42.3669C0.331215 45.561 0.831163 47.7425 1.57484 49.6489C2.34351 51.6241 3.3684 53.293 5.03698 54.962C6.70555 56.6309 8.37413 57.656 10.3489 58.4248C12.255 59.1687 14.436 59.675 17.6294 59.8187C20.8291 59.9625 21.854 60 29.9969 60C38.1398 60 39.1647 59.9625 42.3643 59.8187C45.5578 59.675 47.7388 59.1687 49.6511 58.4248C51.6259 57.656 53.2944 56.6309 54.963 54.962C56.6316 53.293 57.6565 51.6179 58.4252 49.6489C59.1626 47.7425 59.6688 45.561 59.8188 42.3669C59.9625 39.1666 60 38.1477 60 29.9969C60 21.846 59.9625 20.8272 59.8188 17.6268C59.6688 14.4328 59.1626 12.2513 58.4252 10.3448C57.6565 8.36962 56.6316 6.7007 54.963 5.03177C53.2944 3.36285 51.6259 2.33774 49.6511 1.57516C47.7388 0.831337 45.5578 0.325034 42.3643 0.181269C39.1647 0.0375039 38.146 0 29.9969 0ZM30.0031 5.40681C38.0148 5.40681 38.9584 5.43807 42.1269 5.58183C45.0516 5.7131 46.6389 6.2069 47.695 6.61319C49.0949 7.157 50.0948 7.80706 51.1447 8.85717C52.1946 9.90728 52.8445 10.9074 53.3882 12.3075C53.8006 13.3639 54.2881 14.9516 54.4193 17.8769C54.5631 21.0397 54.5943 21.9898 54.5943 29.9969C54.5943 38.004 54.5631 38.9541 54.4193 42.1169C54.2881 45.0422 53.7944 46.6299 53.3882 47.6862C52.8445 49.0864 52.1946 50.0802 51.1447 51.1303C50.0948 52.1804 49.0949 52.8305 47.695 53.3743C46.6389 53.7868 45.0516 54.2744 42.1269 54.4057C38.9647 54.5494 38.0148 54.5807 30.0031 54.5807C21.9915 54.5807 21.0416 54.5494 17.8794 54.4057C14.9547 54.2682 13.3674 53.7806 12.3112 53.3743C10.9114 52.8305 9.91147 52.1804 8.86158 51.1303C7.81169 50.0802 7.16175 49.0801 6.61806 47.68C6.2056 46.6236 5.71815 45.0359 5.58692 42.1106C5.44318 38.9478 5.41194 37.9977 5.41194 29.9844C5.41194 21.971 5.44318 21.0272 5.58692 17.8644C5.71815 14.9391 6.21185 13.3514 6.61806 12.295C7.16175 10.8949 7.81169 9.89478 8.86158 8.84467C9.91147 7.79456 10.9114 7.14449 12.3112 6.60069C13.3674 6.18814 14.9547 5.70059 17.8794 5.56308C22.1581 5.36987 27.9446 5.40681 30.0031 5.40681ZM46.014 10.3886C44.0267 10.3886 42.4143 12.0013 42.4143 13.989C42.4143 15.9767 44.0267 17.5893 46.014 17.5893C48.0012 17.5893 49.6136 15.9767 49.6136 13.989C49.6136 12.0013 48.0012 10.3886 46.014 10.3886ZM29.9969 14.5953C21.4915 14.5953 14.5922 21.496 14.5922 30.0031C14.5922 38.5103 21.4915 45.411 29.9969 45.411C38.5022 45.411 45.4015 38.5165 45.4015 30.0031C45.4015 21.4897 38.5085 14.5953 29.9969 14.5953ZM29.9969 20.0021C35.5213 20.0021 39.9958 24.4775 39.9958 30.0031C39.9958 35.5287 35.5213 40.0042 29.9969 40.0042C24.4725 40.0042 19.9979 35.5287 19.9979 30.0031C19.9979 24.4775 24.4725 20.0021 29.9969 20.0021Z" fill="#808389")
+          .person__left-img
+            picture
+              source(media="(max-width: 539px)" srcset="img/commander-mob.jpg")
+              img(src="img/commander.jpg" alt="фото з інстаграму")
+          .person__left-caption #[span Денис Перч]<br> Командир роти «Фаворит», капітан
+          img(src="img/ip.svg" alt="ip").decoration-ip
+          img(src="img/coordinates.svg" alt="координати").decoration-coord.fade-in
+        .person__right
+          blockquote.person__blockquote безпека солдат передусім
+          .person__info
+            p.person__info-txt.fadeInFromTop Співзасновник та віце-президент Української федерації MMA (UFMMA), віце-президента професійної ліги змішаних бойових мистецтв WWF.
+            p.person__info-txt.fadeInFromTop З перших днів повномасштабного вторгнення захищає Україну в складі ЗСУ.
+            p.person__info-txt.fadeInFromTop Служив в одній з розвідувальних рот Сил оборони, де пройшов шлях від розвідника до командира.
+            p.person__info-txt.fadeInFromTop Створив і розвинув підрозділ нового покоління.
+            p.person__info-txt.fadeInFromTop Його особистий авторитет і досвід дозволяють залучати в роту та згуртовувати першокласних спеціалістів.
+
+    section.offer.container-m
+      .offer__content.container-s
+        .offer__recVideo
+          img(src="img/rec-icon.svg" alt="recorded video")
+        video(autoplay loop muted playsinline preload="none").offer__video
+          source(src="img/video/work.mp4" type="video/mp4")
+          source(src="img/video/work.webm" type="video/webm")
+        h2.h2 Ми пропонуємо:
+        .offer__text
+          .offer__text-left
+            ul
+              li.offer-item роботу з новітніми безпілотними комплексами;
+              li.offer-item професійне зростання в реальних умовах;
+              li.offer-item офіційне працевлаштування і соцгарантії військовослужбовця;
+          .offer__text-right
+            ul
+              li.offer-item відпустку 30 днів на рік з правом виїзду за кордон;
+              li.offer-item гідну оплату праці;
+              li.offer-item забезпечення підрозділу всім необхідним для виконання бойових завдань на передовій – безперебійно та за підтримки меценатів.
+      img(src="img/name.svg" alt="логотип").offer__img
+      img(src="img/line.svg" alt="лінія").decoration-line.fade-in
+      img(src="img/alphabet.svg" alt="алфавіт").decoration-alphabet.fade-in
+
+    section.join.container-m
+      .join__top
+        h2.h2 Як доєднатись
+        p.join__top-right.slideInLeft Якщо ти вмієш працювати в команді, приймати швидкі рішення, маєш інтерес до розвитку у сучасних військових технологіях.
+      .join__bottom
+        .join__bottom-age.slideInRight Тобі від <br> 25 до 58 років
+        p.join__bottom-agit Заповнюй анкету і приєднуйся до роти «Фаворит»
+
+    form.form
+      .form__container.container-m
+        .form__container-left
+          .form__group
+            label.form__label Прізвище
+            input.form__input.form__input-surname(type="text" placeholder="Прізвище")
+
+          .form__group
+            label.form__label Ім'я
+            input.form__input.form__input-first-name(type="text" placeholder="Ім'я")
+
+          .form__group
+            label.form__label По-батькові
+            input.form__input.form__input-middle-name(type="text" placeholder="По-батькові")
+
+          .form__group
+            label.form__label Номер телефону
+            input.form__input.form__input-phone(type="tel" placeholder="+38 (0 ... ... ) ... ... ... ... ... ... ...")
+
+          .form__group
+            label.form__label Дата народження
+            input.form__input.form__input-date(type="date" value="2000-01-01" placeholder="Дата народження")
+        .form__container-right
+          .form__group
+            label.form__label Нік в телеграмі (опційно)
+            input.form__input.form__input-telegram(type="text" placeholder="Нік в телеграмі")
+
+          .form__group
+            label.form__label В якому регіоні ти проживаєш?
+            select.form__input.form__input-region
+              option(value="Автономна-Республіка-Крим") Автономна Республіка Крим
+              option(value="Вінницька" selected) Вінницька
+              option(value="Волинська") Волинська
+              option(value="Дніпропетровська") Дніпропетровська
+              option(value="Донецька") Донецька
+              option(value="Житомирська") Житомирська
+              option(value="Закарпатська") Закарпатська
+              option(value="Запорізька") Запорізька
+              option(value="Івано-Франківська") Івано-Франківська
+              option(value="Київська") Київська
+              option(value="Кіровоградська") Кіровоградська
+              option(value="Луганська") Луганська
+              option(value="Львівська") Львівська
+              option(value="Миколаївська") Миколаївська
+              option(value="Одеська") Одеська
+              option(value="Полтавська") Полтавська
+              option(value="Рівненська") Рівненська
+              option(value="Сумська") Сумська
+              option(value="Тернопільська") Тернопільська
+              option(value="Харківська") Харківська
+              option(value="Херсонська") Херсонська
+              option(value="Хмельницька") Хмельницька
+              option(value="Черкаська") Черкаська
+              option(value="Чернівецька") Чернівецька
+              option(value="Чернігівська") Чернігівська області
+
+          .form__group
+            label.form__label Чи є військовослужбовцем на даний момент?
+            .form__radio-group
+              label
+                input.form__input.form__input-radio(type="radio" name="yes-no" value="yes")
+                | Так
+              label
+                input.form__input.form__input-radio(type="radio" name="yes-no" value="no")
+                | Ні
+
+          .form__group
+            label.form__label.form__label-checkbox
+              input.form__input.form__input-checkbox(type="checkbox")
+              | Даю згоду на обробку моїх персональних даних
+
+          button.form__submit(type="submit") Подати заявку
+        p.form__warning Увага! Одне або декілька полів не заповнені належно. Будь ласка, перевірте їх і спробуйте ще раз.
+        .form__success Дякуємо за вашу заявку
+
+
+    section.footer.container-m
+      .footer__top
+        a(href="https://www.instagram.com/rota_favorit?igsh=MXJmcDM3MDM3bmFiaA==" target="_blank").footer__top-insta
+          svg(xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60" fill="none").inst-img
+            path(d="M29.9969 0C21.854 0 20.8291 0.0375039 17.6294 0.181269C14.436 0.325034 12.255 0.831337 10.3489 1.57516C8.37413 2.34399 6.70555 3.3691 5.03698 5.03177C3.3684 6.7007 2.34351 8.37587 1.57484 10.3448C0.831163 12.2513 0.324966 14.4328 0.181231 17.6268C0.0374961 20.8272 0 21.8523 0 29.9969C0 38.1415 0.0374961 39.1666 0.181231 42.3669C0.331215 45.561 0.831163 47.7425 1.57484 49.6489C2.34351 51.6241 3.3684 53.293 5.03698 54.962C6.70555 56.6309 8.37413 57.656 10.3489 58.4248C12.255 59.1687 14.436 59.675 17.6294 59.8187C20.8291 59.9625 21.854 60 29.9969 60C38.1398 60 39.1647 59.9625 42.3643 59.8187C45.5578 59.675 47.7388 59.1687 49.6511 58.4248C51.6259 57.656 53.2944 56.6309 54.963 54.962C56.6316 53.293 57.6565 51.6179 58.4252 49.6489C59.1626 47.7425 59.6688 45.561 59.8188 42.3669C59.9625 39.1666 60 38.1477 60 29.9969C60 21.846 59.9625 20.8272 59.8188 17.6268C59.6688 14.4328 59.1626 12.2513 58.4252 10.3448C57.6565 8.36962 56.6316 6.7007 54.963 5.03177C53.2944 3.36285 51.6259 2.33774 49.6511 1.57516C47.7388 0.831337 45.5578 0.325034 42.3643 0.181269C39.1647 0.0375039 38.146 0 29.9969 0ZM30.0031 5.40681C38.0148 5.40681 38.9584 5.43807 42.1269 5.58183C45.0516 5.7131 46.6389 6.2069 47.695 6.61319C49.0949 7.157 50.0948 7.80706 51.1447 8.85717C52.1946 9.90728 52.8445 10.9074 53.3882 12.3075C53.8006 13.3639 54.2881 14.9516 54.4193 17.8769C54.5631 21.0397 54.5943 21.9898 54.5943 29.9969C54.5943 38.004 54.5631 38.9541 54.4193 42.1169C54.2881 45.0422 53.7944 46.6299 53.3882 47.6862C52.8445 49.0864 52.1946 50.0802 51.1447 51.1303C50.0948 52.1804 49.0949 52.8305 47.695 53.3743C46.6389 53.7868 45.0516 54.2744 42.1269 54.4057C38.9647 54.5494 38.0148 54.5807 30.0031 54.5807C21.9915 54.5807 21.0416 54.5494 17.8794 54.4057C14.9547 54.2682 13.3674 53.7806 12.3112 53.3743C10.9114 52.8305 9.91147 52.1804 8.86158 51.1303C7.81169 50.0802 7.16175 49.0801 6.61806 47.68C6.2056 46.6236 5.71815 45.0359 5.58692 42.1106C5.44318 38.9478 5.41194 37.9977 5.41194 29.9844C5.41194 21.971 5.44318 21.0272 5.58692 17.8644C5.71815 14.9391 6.21185 13.3514 6.61806 12.295C7.16175 10.8949 7.81169 9.89478 8.86158 8.84467C9.91147 7.79456 10.9114 7.14449 12.3112 6.60069C13.3674 6.18814 14.9547 5.70059 17.8794 5.56308C22.1581 5.36987 27.9446 5.40681 30.0031 5.40681ZM46.014 10.3886C44.0267 10.3886 42.4143 12.0013 42.4143 13.989C42.4143 15.9767 44.0267 17.5893 46.014 17.5893C48.0012 17.5893 49.6136 15.9767 49.6136 13.989C49.6136 12.0013 48.0012 10.3886 46.014 10.3886ZM29.9969 14.5953C21.4915 14.5953 14.5922 21.496 14.5922 30.0031C14.5922 38.5103 21.4915 45.411 29.9969 45.411C38.5022 45.411 45.4015 38.5165 45.4015 30.0031C45.4015 21.4897 38.5085 14.5953 29.9969 14.5953ZM29.9969 20.0021C35.5213 20.0021 39.9958 24.4775 39.9958 30.0031C39.9958 35.5287 35.5213 40.0042 29.9969 40.0042C24.4725 40.0042 19.9979 35.5287 19.9979 30.0031C19.9979 24.4775 24.4725 20.0021 29.9969 20.0021Z" fill="#808389")
+          span @rota_favorit
+        img(src="img/fav-logo.png" alt="Favorit logo").footer__top-img
+        a(href="mailto:favoritrubak@gmail.com").footer__top-email favoritrubak@gmail.com
+      .footer__bottom
+        p © 2025. Рота «Фаворит». Всі права захищені.
