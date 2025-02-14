@@ -57,7 +57,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //slider
-
 document.addEventListener("DOMContentLoaded", function () {
     const sliderWrapper = document.querySelector(".slider__wrapper");
     const slides = document.querySelectorAll(".slider__slide");
@@ -77,8 +76,8 @@ document.addEventListener("DOMContentLoaded", function () {
             dot.classList.toggle("active", index === currentIndex);
         });
 
-        stopAutoSlide(); // Очищаємо поточний інтервал
-        startAutoSlide(); // Запускаємо знову
+        stopAutoSlide();
+        startAutoSlide();
     }
 
     function nextSlide() {
@@ -109,11 +108,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function handleSwipe() {
-        const swipeThreshold = 50; // Мінімальна дистанція для свайпу
+        const swipeThreshold = 50;
         if (touchStartX - touchEndX > swipeThreshold) {
-            nextSlide(); // Свайп вліво – наступний слайд
+            nextSlide();
         } else if (touchEndX - touchStartX > swipeThreshold) {
-            prevSlide(); // Свайп вправо – попередній слайд
+            prevSlide();
         }
     }
 
@@ -130,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
     prevBtn.addEventListener("click", prevSlide);
     nextBtn.addEventListener("click", nextSlide);
 
-    // Додаємо обробку свайпів на мобільних пристроях
+    // mob swipe
     sliderWrapper.addEventListener("touchstart", handleTouchStart);
     sliderWrapper.addEventListener("touchend", handleTouchEnd);
 
