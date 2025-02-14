@@ -99,6 +99,8 @@
         width: 1204px
         height: 525px
         justify-content: flex-end
+        &__slide
+          width: 1095px
         &__wrapper
           width: 91%
     .achievements
@@ -370,6 +372,8 @@
         width: 1020px
         height: 506px
         margin-right: 48px
+        &__slide
+          width: 928px
     .achievements
       margin-bottom: 100px
       &__left
@@ -445,6 +449,8 @@
         width: 994px
         margin-right: -15px
         height: 429px
+        &__slide
+          width: 750px
     .achievements
       &__info
         padding: 35px 40px 20px 13px
@@ -577,6 +583,8 @@
       width: 800px
       .slider
         margin-right: 55px
+        &__slide
+          width: 678px
         &__btn
           &-prev,
             &-next
@@ -788,6 +796,8 @@
       .slider
         margin-right: 20px
         height: 300px
+        &__slide
+          width: 528px
         &__btn
           width: 20px
           height: 20px
@@ -942,6 +952,8 @@
           height: 26px
           font-size: 11px
     .about
+      &::after
+        background: url('../img/line-bg-mob.svg') no-repeat 0% 0%/cover
       &__content
         .h1
           font-size: 22px
@@ -999,9 +1011,13 @@
         margin-top: -7px
         justify-content: center
         height: 287px
+        &__slide
+          width: 100%
         &__wrapper
           position: relative
           padding-bottom: 20px
+          height: 100%
+          width: 85%
         &__btn
           display: none
         &__dots
@@ -1218,6 +1234,17 @@
           width: 190px
           margin: 0 auto
 
+@media screen and (max-width: 562px)
+  .page
+    .photos
+      .slider
+        &__dots
+          bottom: 23px
+    .achievements
+      &-txt
+        margin-top: 30px
+
+
 @media screen and (max-width: 539px)
   .page
     .header
@@ -1257,6 +1284,8 @@
       .slider
         &__wrapper
           width: 323px
+        &__dots
+          bottom: 7px
 
 @media screen and (max-width: 450px)
   .page
@@ -1274,10 +1303,31 @@
       .slider
         height: 317px
         &__wrapper
-          width: 85%
+          width: 83%
+        &__dots
+          bottom: 5px
     .achievements
       &-txt
         margin-top: 30px
+
+@media screen and (max-width: 415px)
+  .page
+    .photos
+      .slider
+        height: 300px
+
+@media screen and (max-width: 390px)
+  .page
+    .photos
+      .slider
+        width: 390px
+        height: 280px
+
+@media screen and (max-width: 360px)
+  .page
+    .photos
+      .slider
+        height: 250px
 
 @media screen and (max-width: 350px)
   .page
@@ -1313,6 +1363,11 @@
       &__top
         .h2
           font-size: 25px
+    .photos
+      .slider
+        height: 280px
+        &__dots
+          bottom: 50px
     .person
       &__blockquote
         font-size: 18px
@@ -1341,6 +1396,10 @@
           width: 240px
           left: 10px
 
-
+@media screen and (max-width: 300px)
+  .page
+    .photos
+      .slider
+        height: 260px
 
 
