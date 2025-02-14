@@ -1,21 +1,28 @@
 //button for TEST
 document.addEventListener('DOMContentLoaded', function() {
-    const modalOverlay = document.querySelector('.form__success');
-    const openModalBtn = document.querySelector('.dark-btn');
+    const modalOverlays = document.querySelectorAll('.form__success');
+    const openModalBtns = document.querySelectorAll('.dark-btn');
 
-    if (!modalOverlay || !openModalBtn) {
-        console.error("Елемент не знайдено!");
+    if (modalOverlays.length === 0 || openModalBtns.length === 0) {
+        console.error("Елементи не знайдено!");
         return;
     }
 
-    openModalBtn.addEventListener('click', function() {
-        modalOverlay.style.display = 'flex';
+    openModalBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            modalOverlays.forEach(modal => {
+                modal.style.display = 'flex'; // Відкриває всі .form__success
+            });
+        });
     });
 
-    modalOverlay.addEventListener('click', function() {
-        modalOverlay.style.display = 'none';
+    modalOverlays.forEach(modal => {
+        modal.addEventListener('click', function() {
+            this.style.display = 'none';
+        });
     });
 });
+
 //fade-in when visible
 document.addEventListener("DOMContentLoaded", function () {
     const elements = document.querySelectorAll(".fade-in, .slideInLeft, .slideInRight, .fadeInFromTop");
