@@ -41,6 +41,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const dotsContainer = document.querySelector(".slider__dots");
     let currentIndex = 0;
     let interval;
+    let touchStartX = 0;
+    let touchEndX = 0;
 
     function updateSlider() {
         slides.forEach((slide, index) => {
@@ -49,6 +51,9 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".slider__dot").forEach((dot, index) => {
             dot.classList.toggle("active", index === currentIndex);
         });
+
+        stopAutoSlide(); // Очищаємо поточний інтервал
+        startAutoSlide(); // Запускаємо знову
     }
 
     function nextSlide() {
@@ -69,6 +74,24 @@ document.addEventListener("DOMContentLoaded", function () {
         clearInterval(interval);
     }
 
+    function handleTouchStart(event) {
+        touchStartX = event.touches[0].clientX;
+    }
+
+    function handleTouchEnd(event) {
+        touchEndX = event.changedTouches[0].clientX;
+        handleSwipe();
+    }
+
+    function handleSwipe() {
+        const swipeThreshold = 50; // Мінімальна дистанція для свайпу
+        if (touchStartX - touchEndX > swipeThreshold) {
+            nextSlide(); // Свайп вліво – наступний слайд
+        } else if (touchEndX - touchStartX > swipeThreshold) {
+            prevSlide(); // Свайп вправо – попередній слайд
+        }
+    }
+
     slides.forEach((_, index) => {
         const dot = document.createElement("span");
         dot.classList.add("slider__dot");
@@ -82,9 +105,13 @@ document.addEventListener("DOMContentLoaded", function () {
     prevBtn.addEventListener("click", prevSlide);
     nextBtn.addEventListener("click", nextSlide);
 
+    // Додаємо обробку свайпів на мобільних пристроях
+    sliderWrapper.addEventListener("touchstart", handleTouchStart);
+    sliderWrapper.addEventListener("touchend", handleTouchEnd);
+
     updateSlider();
-    startAutoSlide();
 });
+
 
 //form
 
@@ -210,57 +237,127 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 submitButton.classList.add('warning');
             }
+            return isValid
         }
+
+
+        function  checkValid(){
+            let isValid = false
+            const warnings = form.querySelectorAll(".warning");
+            warnings.forEach(warning => warning.classList.remove("warning")); // Очистити попередні помилки
+
+            // Функція для додавання попередження
+            const addWarning = (input, message) => {
+                // console.log(input)
+
+                isValid = false;
+                input.classList.add("warning");
+                let warningMessage = input.nextElementSibling;
+                if (!warningMessage || !warningMessage.classList.contains("form__warning")) {
+                    warningMessage = document.createElement("p");
+                    warningMessage.classList.add("form__warning");
+                    warningMessage.textContent = message;
+                    input.parentNode.appendChild(warningMessage);
+                }
+            };
+
+            let surnameValid = false
+            let firstNameValid = false
+            let secondNameValid = false
+            let phoneValid = false
+            let birthDateValid = false
+            let isMilitaryValid = false
+            let consentValid = false
+
+
+            // Валідація текстових полів
+            const surname = form.querySelector(".form__input-surname");
+            surname.addEventListener("input", () =>{
+                if (!surname.value.trim()) addWarning(surname, "Прізвище обов'язкове");
+            })
+            if (!surname.value.trim()) {
+                addWarning(surname, "Прізвище обов'язкове");
+
+            }else{
+                surnameValid = true
+            }
+
+            const firstName = form.querySelector(".form__input-first-name");
+            if (!firstName.value.trim()) {
+                addWarning(firstName, "Ім'я обов'язкове");
+
+            }else{
+                firstNameValid = true
+            }
+
+            const secondName = form.querySelector(".form__input-middle-name");
+            if (!secondName.value.trim()) {
+                addWarning(secondName, "По батькові обов'язкове");
+
+
+            }else{
+                secondNameValid = true
+            }
+
+            // Валідація телефону
+            const phone = form.querySelector(".form__input-phone");
+            if (!phone.value.trim() || !/^\+38\s?\d{3}\s?\d{3}\s?\d{2}\s?\d{2}$/.test(phone.value)) {
+                addWarning(phone, "Номер телефону обов'язковий");
+
+            }else{
+                phoneValid = true
+            }
+
+            // Валідація дати народження
+            const birthDate = form.querySelector(".form__input-date");
+            if (!birthDate.value || birthDate.value === "2000-01-01") {
+                addWarning(birthDate, "Дата народження обов'язкова");
+            }else{
+                birthDateValid = true
+            }
+
+            // Валідація військовослужбовця
+            const isMilitary = form.querySelector(".form__input-radio:checked");
+            if (!isMilitary){
+                addWarning(form.querySelector(".form__radio-group"), "Оберіть варіант");
+            }else {
+                isMilitaryValid = true
+            }
+
+            // Валідація згоди на обробку даних
+            const consent = form.querySelector(".form__input-checkbox");
+            if (!consent.checked) {
+                addWarning(consent, "Ви повинні погодитися з обробкою даних");
+            }else{
+                consentValid = true
+            }
+
+            if (surnameValid && firstNameValid && secondNameValid && phoneValid && birthDateValid && isMilitaryValid && consentValid){
+                isValid = true
+            }
+
+            if (!isValid) {
+                formWarning.classList.add('visible');
+                submitButton.classList.add('warning');
+            } else {
+                formWarning.classList.remove('visible');
+                submitButton.classList.remove('warning');
+            }
+
+            return isValid
+        }
+
 
         forms.forEach(form => {
             form.addEventListener("submit", (event) => {
                 event.preventDefault(); // Заблокувати стандартну відправку
+                // validateInputs(form)
+                let isValid = checkValid()
+                console.log(isValid)
 
-                let isValid = true;
-                const warnings = form.querySelectorAll(".warning");
-                warnings.forEach(warning => warning.classList.remove("warning")); // Очистити попередні помилки
-
-                // Функція для додавання попередження
-                const addWarning = (input, message) => {
-                    isValid = false;
-                    input.classList.add("warning");
-                    let warningMessage = input.nextElementSibling;
-                    if (!warningMessage || !warningMessage.classList.contains("form__warning")) {
-                        warningMessage = document.createElement("p");
-                        warningMessage.classList.add("form__warning");
-                        warningMessage.textContent = message;
-                        input.parentNode.appendChild(warningMessage);
-                    }
-                };
-
-                // Валідація текстових полів
-                const surname = form.querySelector(".form__input-surname");
-                if (!surname.value.trim()) addWarning(surname, "Прізвище обов'язкове");
-
-                const firstName = form.querySelector(".form__input-first-name");
-                if (!firstName.value.trim()) addWarning(firstName, "Ім'я обов'язкове");
-
-                // Валідація телефону
-                const phone = form.querySelector(".form__input-phone");
-                if (!phone.value.trim() || !/^\+38\s?\d{3}\s?\d{3}\s?\d{2}\s?\d{2}$/.test(phone.value)) {
-                    addWarning(phone, "Номер телефону обов'язковий");
-                }
-
-                // Валідація дати народження
-                const birthDate = form.querySelector(".form__input-date");
-                if (!birthDate.value || birthDate.value === "2000-01-01") {
-                    addWarning(birthDate, "Дата народження обов'язкова");
-                }
-
-                // Валідація військовослужбовця
-                const isMilitary = form.querySelector(".form__input-radio:checked");
-                if (!isMilitary) addWarning(form.querySelector(".form__input-radio"), "Оберіть варіант");
-
-                // Валідація згоди на обробку даних
-                const consent = form.querySelector(".form__input-checkbox");
-                if (!consent.checked) addWarning(consent, "Ви повинні погодитися з обробкою даних");
 
                 if (isValid) {
+                    console.log("dsad")
                     const formData = new FormData(form); //
 
                     const successMessage = form.querySelector('.form__success');
@@ -269,11 +366,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         setTimeout(() => {
                             successMessage.classList.remove('visible');
+                            formWarning.classList.add('visible');
                             form.reset();
                         }, 5000);
 
                         successMessage.addEventListener('click', () => {
                             successMessage.classList.remove('visible');
+                            formWarning.classList.add('visible');
                             form.reset();
                         });
                     }

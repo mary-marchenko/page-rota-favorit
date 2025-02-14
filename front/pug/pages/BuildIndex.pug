@@ -20,36 +20,36 @@
           img(src="img/top-text.png" alt="Вільні та руйнівні")
       button.header__content-btn Доєднатись
 
-  form.form.firstForm
+  form.form.firstForm(method="POST" action="/build/mail/index.php")
     .form__container.container-m
       .form__container-left
         .form__group
           label.form__label Прізвище
-          input.form__input.form__input-surname(type="text" placeholder="Прізвище")
+          input.form__input.form__input-surname(type="text" name="surname" placeholder="Прізвище")
 
         .form__group
           label.form__label Ім'я
-          input.form__input.form__input-first-name(type="text" placeholder="Ім'я")
+          input.form__input.form__input-first-name(type="text" name="firstName" placeholder="Ім'я")
 
         .form__group
           label.form__label По-батькові
-          input.form__input.form__input-middle-name(type="text" placeholder="По-батькові")
+          input.form__input.form__input-middle-name(type="text" name="middleName" placeholder="По-батькові")
 
         .form__group
           label.form__label Номер телефону
-          input.form__input.form__input-phone(type="tel" placeholder="+38 (0 ... ... ) ... ... ... ... ... ... ...")
+          input.form__input.form__input-phone(type="tel" name="phone" placeholder="+38 (0 ... ... ) ... ... ... ... ... ... ...")
 
         .form__group
           label.form__label Дата народження
-          input.form__input.form__input-date(type="date" value="2000-01-01" placeholder="Дата народження")
+          input.form__input.form__input-date(type="date" name="birthDate" value="2000-01-01" placeholder="Дата народження")
       .form__container-right
         .form__group
           label.form__label Нік в телеграмі (опційно)
-          input.form__input.form__input-telegram(type="text" placeholder="Нік в телеграмі")
+          input.form__input.form__input-telegram(type="text" name="telegramNick" placeholder="Нік в телеграмі")
 
         .form__group
           label.form__label В якому регіоні ти проживаєш?
-          select.form__input.form__input-region
+          select.form__input.form__input-region(name="region")
             option(value="Автономна-Республіка-Крим") Автономна Республіка Крим
             option(value="Вінницька" selected) Вінницька
             option(value="Волинська") Волинська
@@ -80,18 +80,19 @@
           label.form__label Чи є військовослужбовцем на даний момент?
           .form__radio-group
             label
-              input.form__input.form__input-radio(type="radio" name="yes-no" value="yes")
+              input.form__input.form__input-radio(type="radio" name="isMilitary" value="yes")
               | Так
             label
-              input.form__input.form__input-radio(type="radio" name="yes-no" value="no")
+              input.form__input.form__input-radio(type="radio" name="isMilitary" value="no")
               | Ні
 
         .form__group
           label.form__label.form__label-checkbox
-            input.form__input.form__input-checkbox(type="checkbox")
+            input.form__input.form__input-checkbox(type="checkbox" name="consent")
             | Даю згоду на обробку моїх персональних даних
 
-        button.form__submit(type="submit") Подати заявку
+        button.form__submit(type="submit" name="submitBtn") Подати заявку
+
       p.form__warning Увага! Одне або декілька полів не заповнені належно. Будь ласка, перевірте їх і спробуйте ще раз.
       .form__success Дякуємо за вашу заявку
 
@@ -221,36 +222,36 @@
         .join__bottom-age.slideInRight Тобі від <br> 25 до 58 років
         p.join__bottom-agit Заповнюй анкету і приєднуйся до роти «Фаворит»
 
-    form.form
+    form.form(method="POST" action="/build/mail/index.php")
       .form__container.container-m
         .form__container-left
           .form__group
             label.form__label Прізвище
-            input.form__input.form__input-surname(type="text" placeholder="Прізвище")
+            input.form__input.form__input-surname(type="text" name="surname" placeholder="Прізвище")
 
           .form__group
             label.form__label Ім'я
-            input.form__input.form__input-first-name(type="text" placeholder="Ім'я")
+            input.form__input.form__input-first-name(type="text" name="firstName" placeholder="Ім'я")
 
           .form__group
             label.form__label По-батькові
-            input.form__input.form__input-middle-name(type="text" placeholder="По-батькові")
+            input.form__input.form__input-middle-name(type="text" name="middleName" placeholder="По-батькові")
 
           .form__group
             label.form__label Номер телефону
-            input.form__input.form__input-phone(type="tel" placeholder="+38 (0 ... ... ) ... ... ... ... ... ... ...")
+            input.form__input.form__input-phone(type="tel" name="phone" placeholder="+38 (0 ... ... ) ... ... ... ... ... ... ...")
 
           .form__group
             label.form__label Дата народження
-            input.form__input.form__input-date(type="date" value="2000-01-01" placeholder="Дата народження")
+            input.form__input.form__input-date(type="date" name="birthDate" value="2000-01-01" placeholder="Дата народження")
         .form__container-right
           .form__group
             label.form__label Нік в телеграмі (опційно)
-            input.form__input.form__input-telegram(type="text" placeholder="Нік в телеграмі")
+            input.form__input.form__input-telegram(type="text" name="telegramNick" placeholder="Нік в телеграмі")
 
           .form__group
             label.form__label В якому регіоні ти проживаєш?
-            select.form__input.form__input-region
+            select.form__input.form__input-region(name="region")
               option(value="Автономна-Республіка-Крим") Автономна Республіка Крим
               option(value="Вінницька" selected) Вінницька
               option(value="Волинська") Волинська
@@ -281,21 +282,21 @@
             label.form__label Чи є військовослужбовцем на даний момент?
             .form__radio-group
               label
-                input.form__input.form__input-radio(type="radio" name="yes-no" value="yes")
+                input.form__input.form__input-radio(type="radio" name="isMilitary" value="yes")
                 | Так
               label
-                input.form__input.form__input-radio(type="radio" name="yes-no" value="no")
+                input.form__input.form__input-radio(type="radio" name="isMilitary" value="no")
                 | Ні
 
           .form__group
             label.form__label.form__label-checkbox
-              input.form__input.form__input-checkbox(type="checkbox")
+              input.form__input.form__input-checkbox(type="checkbox" name="consent")
               | Даю згоду на обробку моїх персональних даних
 
-          button.form__submit(type="submit") Подати заявку
+          button.form__submit(type="submit" name="submitBtn") Подати заявку
+
         p.form__warning Увага! Одне або декілька полів не заповнені належно. Будь ласка, перевірте їх і спробуйте ще раз.
         .form__success Дякуємо за вашу заявку
-
 
     section.footer.container-m
       .footer__top
