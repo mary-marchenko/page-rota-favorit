@@ -229,9 +229,17 @@ body
       &__slide
         width: 1247px
         height: 100%
-        display: none
+        position: absolute
+        right: 0
+        top: 0
+        //display: none
         text-align: center
         justify-content: center
+        transition: opacity .7s ease-in-out
+        &.active
+          opacity: 1
+        &.opacity
+          opacity: 0
       &__btn
         position: absolute
         transform: translateY(-50%)

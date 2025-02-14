@@ -70,7 +70,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function updateSlider() {
         slides.forEach((slide, index) => {
-            slide.style.display = index === currentIndex ? "flex" : "none";
+            slide.classList.remove("active", "opacity")
+            slide.classList.add(`${index === currentIndex ? "active" : "opacity"}`)
         });
         document.querySelectorAll(".slider__dot").forEach((dot, index) => {
             dot.classList.toggle("active", index === currentIndex);
