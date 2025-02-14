@@ -1,3 +1,21 @@
+//button for TEST
+document.addEventListener('DOMContentLoaded', function() {
+    const modalOverlay = document.querySelector('.form__success');
+    const openModalBtn = document.querySelector('.dark-btn');
+
+    if (!modalOverlay || !openModalBtn) {
+        console.error("Елемент не знайдено!");
+        return;
+    }
+
+    openModalBtn.addEventListener('click', function() {
+        modalOverlay.style.display = 'flex';
+    });
+
+    modalOverlay.addEventListener('click', function() {
+        modalOverlay.style.display = 'none';
+    });
+});
 //fade-in when visible
 document.addEventListener("DOMContentLoaded", function () {
     const elements = document.querySelectorAll(".fade-in, .slideInLeft, .slideInRight, .fadeInFromTop");
