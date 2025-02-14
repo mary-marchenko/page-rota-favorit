@@ -98,7 +98,7 @@ let gulp = require('gulp')
 
 // COPY PHP
     gulp.task('copyPHP', function(){
-        return gulp.src(['front/send_mail.php', 'front/PHPMailer/**'], { base: 'front' })
+        return gulp.src([ 'front/mail/**'], { base: 'front' })
             .pipe(gulp.dest('build'));
     });
 

@@ -212,47 +212,112 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        //submit
-        form.addEventListener('submit', (event) => {
-            event.preventDefault();
+        forms.forEach(form => {
+            form.addEventListener("submit", (event) => {
+                event.preventDefault(); // Заблокувати стандартну відправку
 
-            let isValid = true;
-            validateInputs(form);
+                let isValid = true;
+                const warnings = form.querySelectorAll(".warning");
+                warnings.forEach(warning => warning.classList.remove("warning")); // Очистити попередні помилки
 
-            if (form.querySelector('.warning')) {
-                isValid = false;
-            }
-
-            if (isValid) {
-                const successMessage = form.querySelector('.form__success');
-                const formData = {
-                    surname: form.querySelector(".form__input-surname").value.trim(),
-                    firstName: form.querySelector(".form__input-first-name").value.trim(),
-                    middleName: form.querySelector(".form__input-middle-name").value.trim(),
-                    phone: form.querySelector(".form__input-phone").value.trim(),
-                    birthDate: form.querySelector(".form__input-date").value,
-                    telegramNick: form.querySelector(".form__input-telegram").value.trim(),
-                    region: form.querySelector(".form__input-region").value,
-                    isMilitary: form.querySelector(".form__input-radio:checked")?.value || "no",
-                    consent: form.querySelector(".form__input-checkbox").checked,
+                // Функція для додавання попередження
+                const addWarning = (input, message) => {
+                    isValid = false;
+                    input.classList.add("warning");
+                    let warningMessage = input.nextElementSibling;
+                    if (!warningMessage || !warningMessage.classList.contains("form__warning")) {
+                        warningMessage = document.createElement("p");
+                        warningMessage.classList.add("form__warning");
+                        warningMessage.textContent = message;
+                        input.parentNode.appendChild(warningMessage);
+                    }
                 };
 
-                console.log("Form Data:", formData);
-                if (successMessage) {
-                    successMessage.classList.add('visible');
+                // Валідація текстових полів
+                const surname = form.querySelector(".form__input-surname");
+                if (!surname.value.trim()) addWarning(surname, "Прізвище обов'язкове");
 
-                    setTimeout(() => {
-                        successMessage.classList.remove('visible');
-                        form.reset();
-                    }, 5000);
+                const firstName = form.querySelector(".form__input-first-name");
+                if (!firstName.value.trim()) addWarning(firstName, "Ім'я обов'язкове");
 
-                    successMessage.addEventListener('click', () => {
-                        successMessage.classList.remove('visible');
-                        form.reset();
-                    });
+                // Валідація телефону
+                const phone = form.querySelector(".form__input-phone");
+                if (!phone.value.trim() || !/^\+38\s?\d{3}\s?\d{3}\s?\d{2}\s?\d{2}$/.test(phone.value)) {
+                    addWarning(phone, "Номер телефону обов'язковий");
                 }
-            }
+
+                // Валідація дати народження
+                const birthDate = form.querySelector(".form__input-date");
+                if (!birthDate.value || birthDate.value === "2000-01-01") {
+                    addWarning(birthDate, "Дата народження обов'язкова");
+                }
+
+                // Валідація військовослужбовця
+                const isMilitary = form.querySelector(".form__input-radio:checked");
+                if (!isMilitary) addWarning(form.querySelector(".form__input-radio"), "Оберіть варіант");
+
+                // Валідація згоди на обробку даних
+                const consent = form.querySelector(".form__input-checkbox");
+                if (!consent.checked) addWarning(consent, "Ви повинні погодитися з обробкою даних");
+
+                if (isValid) {
+                    const formData = new FormData(form); //
+
+                    const successMessage = form.querySelector('.form__success');
+                    if (successMessage) {
+                        successMessage.classList.add('visible');
+
+                        setTimeout(() => {
+                            successMessage.classList.remove('visible');
+                            form.reset();
+                        }, 5000);
+
+                        successMessage.addEventListener('click', () => {
+                            successMessage.classList.remove('visible');
+                            form.reset();
+                        });
+                    }
+
+                    fetch(form.action, {
+                        method: "POST",
+                        body: formData
+                    })
+                        .then(response => response.text())
+                        .then(data => {
+                            // console.log(data); // Вивести відповідь від сервера
+
+                            const successMessage = form.querySelector('.form__success');
+                            const errorMessage = form.querySelector('.form__warning');
+
+                            if (data.includes("Дякуємо за вашу заявку!")) {
+                                // Показати повідомлення про успіх
+                                if (successMessage) {
+                                    successMessage.classList.add('visible');
+                                    setTimeout(() => {
+                                        successMessage.classList.remove('visible');
+                                        form.reset(); // Очистити форму
+                                    }, 5000);
+                                }
+                            } else {
+                                // Показати повідомлення про помилку
+                                if (errorMessage) {
+                                    errorMessage.textContent = "Помилка при відправці форми. Спробуйте ще раз.";
+                                    errorMessage.classList.add('visible');
+                                }
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Помилка при відправці форми:", error);
+                            const errorMessage = form.querySelector('.form__warning');
+                            if (errorMessage) {
+                                errorMessage.textContent = "Помилка при відправці форми. Спробуйте ще раз.";
+                                errorMessage.classList.add('visible');
+                            }
+                        });
+                }
+            });
         });
+
     });
 });
 
