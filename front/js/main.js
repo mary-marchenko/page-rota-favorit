@@ -139,7 +139,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 //form
-
 document.addEventListener("DOMContentLoaded", () => {
     const forms = document.querySelectorAll('form');  // Все формы на странице
 
@@ -161,16 +160,30 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        phoneInput.addEventListener('input', function () {
+        phoneInput.addEventListener('input', function (e) {
             let value = this.value.replace(/\D/g, '');
 
+            if (e.inputType === "deleteContentBackward" && this.value.endsWith(" ")) {
+                this.value = this.value.slice(0, -1);
+                return;
+            }
+
             if (value.length > 1) {
-                value = '+38 ' + value.slice(2, 5) + ' ' + value.slice(5, 8) + ' ' + value.slice(8, 10) + ' ' + value.slice(10, 12);
+                value = '+38 ' + value.slice(2, 5).trim() + ' ' + value.slice(5, 8).trim() + ' ' + value.slice(8, 10).trim() + ' ' + value.slice(10, 12).trim();
             } else {
                 value = '+38';
             }
 
-            this.value = value;
+            this.value = value.replace(/\s+/g, ' ').trim();
+        });
+
+        //calendar
+        dateInput.addEventListener('input', function () {
+            const parts = this.value.split('-');
+            if (parts[0] && parts[0].length > 4) {
+                parts[0] = parts[0].slice(0, 4);
+                this.value = parts.join('-');
+            }
         });
 
         //input
@@ -443,8 +456,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 });
-
-
 
 
 
