@@ -19,8 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $consent = isset($_POST['consent']) ? 'Так' : 'Ні';
 
     // Визначення пошти отримувача
-//     $to_email = ($isMilitary === 'yes') ? 'pipidon2000@ukr.net' : 'gnatykayura@gmail.com';
-    $to_email = ($isMilitary === 'yes') ? 'Petrenko.lena1103@gmail.com' : 'o.petrenko@favbet.ua';
+    $to_email = ($isMilitary === 'yes') ? 'favoritrubak@gmail.com' : 'cv_recruiter@ukr.net';
 
     // Формування тіла листа
    $body = "

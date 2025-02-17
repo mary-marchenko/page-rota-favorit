@@ -345,20 +345,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 event.preventDefault(); // Заблокувати стандартну відправку
 
                 let isValid = checkValid();
-                console.log(isValid);
-
-                // Перевірка каптчі
-                const recaptchaResponse = grecaptcha.getResponse(); // Отримуємо відповідь з каптчі
-                if (recaptchaResponse.length === 0) {
-                    // Перевірка каптчі лише один раз
-                    if (!document.querySelector('.recaptcha').classList.contains('checked')) {
-                        alert("Будь ласка, пройдіть перевірку reCAPTCHA.");
-                        document.querySelector('.page').classList.add('hidden'); // Сховати контент
-                        document.querySelector('.recaptcha').style.display = 'flex'; // Показати каптчу
-                        document.querySelector('.recaptcha').classList.add('checked'); // Додати клас, щоб не повторювати перевірку
-                    }
-                    return; // Якщо каптча не пройдена, не відправляємо форму
-                }
+                // console.log(isValid);
 
                 if (isValid) {
                     const formData = new FormData(form);
@@ -386,7 +373,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     })
                         .then(response => response.text())
                         .then(data => {
-                            console.log(data); // Вивести відповідь від сервера
+                            // console.log(data); // Вивести відповідь від сервера
 
                             const successMessage = form.querySelector('.form__success');
                             const errorMessage = form.querySelector('.form__warning');
@@ -415,6 +402,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         });
+
 
 
 

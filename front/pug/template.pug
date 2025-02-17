@@ -4,44 +4,11 @@ doctype html
 html(lang="ua")
     head
         meta(charset='utf-8')
-        meta(http-equiv="Content-Security-Policy" content="frame-ancestors 'self' https://www.google.com;")
         title #{title}
         meta(content="width=device-width, initial-scale=1" name="viewport")
         link(rel="shortcut icon" href="img/favicon.ico" type="image/x-icon")
         link(rel='stylesheet', href='css/main.css?v=6')
-        script(src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer)
-        script.
-            function onloadCallback() {
-                document.querySelector('.loader').style.display = 'block';
-                document.querySelector('#recaptcha1').style.display = 'none';
-                document.querySelector('body').style.overflow = "hidden"
-
-
-                setTimeout(()=>{
-                    document.querySelector('.loader').style.display = 'none';
-                    document.querySelector('#recaptcha1').style.display = 'block';
-                }, 1000)
-
-                // Завантажуємо каптчу
-                grecaptcha.render('recaptcha1', {
-                    'sitekey': '6LeNANoqAAAAALD5Y47qjf3ODwtAsnT3pJwIXLdM',
-                    'callback': onCaptchaSuccess
-                });
-            }
-
-
-            function onCaptchaSuccess() {
-                setTimeout(()=>{
-                    document.querySelector('.recaptcha').style.display = 'none';
-                    document.querySelector('.page').classList.remove('hidden');
-                    document.querySelector('body').style.overflow = "auto"
-                }, 1000)
-
-            }
-
-
-
     body
         block content
-        script(src='js/main.js?v=11')
+        script(src='js/main.js?v=14')
 
