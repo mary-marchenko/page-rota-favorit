@@ -423,10 +423,10 @@ document.addEventListener("DOMContentLoaded", () => {
                                 }
                             } else {
                                 // Показати повідомлення про помилку
-                                if (errorMessage) {
-                                    errorMessage.textContent = "Помилка при відправці форми. Спробуйте ще раз.";
-                                    errorMessage.classList.add('visible');
-                                }
+                                // if (errorMessage) {
+                                //     errorMessage.textContent = "Помилка при відправці форми. Спробуйте ще раз.";
+                                //     errorMessage.classList.add('visible');
+                                // }
                             }
                         })
                         .catch(error => {
