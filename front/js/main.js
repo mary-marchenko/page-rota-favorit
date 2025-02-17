@@ -321,9 +321,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Перевірка каптчі
                 const recaptchaResponse = grecaptcha.getResponse(); // Отримуємо відповідь з каптчі
                 if (recaptchaResponse.length === 0) {
-                    alert("Будь ласка, пройдіть перевірку reCAPTCHA.");
-                    document.querySelector('.content').classList.add('hidden'); // Сховати контент
-                    document.querySelector('.recaptcha').style.display = 'block'; // Показати каптчу
+                    // Перевірка каптчі лише один раз
+                    if (!document.querySelector('.recaptcha').classList.contains('checked')) {
+                        alert("Будь ласка, пройдіть перевірку reCAPTCHA.");
+                        document.querySelector('.page').classList.add('hidden'); // Сховати контент
+                        document.querySelector('.recaptcha').style.display = 'flex'; // Показати каптчу
+                        document.querySelector('.recaptcha').classList.add('checked'); // Додати клас, щоб не повторювати перевірку
+                    }
                     return; // Якщо каптча не пройдена, не відправляємо форму
                 }
 
@@ -382,6 +386,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         });
+
 
 
     });
