@@ -1,28 +1,3 @@
-//button for TEST
-document.addEventListener('DOMContentLoaded', function() {
-    const modalOverlays = document.querySelectorAll('.form__success');
-    const openModalBtns = document.querySelectorAll('.dark-btn');
-
-    if (modalOverlays.length === 0 || openModalBtns.length === 0) {
-        console.error("Елементи не знайдено!");
-        return;
-    }
-
-    openModalBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            modalOverlays.forEach(modal => {
-                modal.style.display = 'flex'; // Відкриває всі .form__success
-            });
-        });
-    });
-
-    modalOverlays.forEach(modal => {
-        modal.addEventListener('click', function() {
-            this.style.display = 'none';
-        });
-    });
-});
-
 //fade-in when visible
 document.addEventListener("DOMContentLoaded", function () {
     const elements = document.querySelectorAll(".fade-in, .slideInLeft, .slideInRight, .fadeInFromTop");
@@ -157,25 +132,35 @@ document.addEventListener("DOMContentLoaded", () => {
         phoneInput.addEventListener('focus', function () {
             if (phoneInput.value.trim() === '') {
                 phoneInput.value = '+38'; // Автозаполнение при фокусе
+                phoneInput.setSelectionRange(3, 3); // Ставим курсор после +38
             }
         });
 
         phoneInput.addEventListener('input', function (e) {
-            let value = this.value.replace(/\D/g, '');
+            let start = this.selectionStart;
+            let rawValue = this.value.replace(/\D/g, ''); // Убираем все нецифровые символы
 
             if (e.inputType === "deleteContentBackward" && this.value.endsWith(" ")) {
                 this.value = this.value.slice(0, -1);
-                return;
+                start--; // Корректируем позицию каретки при удалении пробела
             }
 
-            if (value.length > 1) {
-                value = '+38 ' + value.slice(2, 5).trim() + ' ' + value.slice(5, 8).trim() + ' ' + value.slice(8, 10).trim() + ' ' + value.slice(10, 12).trim();
-            } else {
-                value = '+38';
-            }
+            let formattedValue = '+38';
 
-            this.value = value.replace(/\s+/g, ' ').trim();
+            if (rawValue.length > 2) formattedValue += ' ' + rawValue.slice(2, 5);
+            if (rawValue.length > 5) formattedValue += ' ' + rawValue.slice(5, 8);
+            if (rawValue.length > 8) formattedValue += ' ' + rawValue.slice(8, 10);
+            if (rawValue.length > 10) formattedValue += ' ' + rawValue.slice(10, 12);
+
+            // Определяем разницу в длине
+            let diff = formattedValue.length - this.value.length;
+
+            this.value = formattedValue;
+
+            // Корректируем позицию каретки
+            this.setSelectionRange(start + diff, start + diff);
         });
+
 
         //calendar
         dateInput.addEventListener('input', function () {
