@@ -128,38 +128,67 @@ document.addEventListener("DOMContentLoaded", () => {
         const telegramInput = form.querySelector('.form__input-telegram'); // Нік в телеграмі
         const formWarning = form.querySelector('.form__warning');  // Контейнер для предупреждений
 
-        // telephone
+        //telephone
         phoneInput.addEventListener('focus', function () {
             if (phoneInput.value.trim() === '') {
-                phoneInput.value = '+38'; // Автозаполнение при фокусе
-                phoneInput.setSelectionRange(3, 3); // Ставим курсор после +38
+                phoneInput.value = '+38';
+            }
+            // Если курсор оказался перед "+38", перемещаем его после
+            if (this.selectionStart < 3) {
+                this.setSelectionRange(3, 3);
             }
         });
 
-        phoneInput.addEventListener('input', function (e) {
-            let start = this.selectionStart;
-            let rawValue = this.value.replace(/\D/g, ''); // Убираем все нецифровые символы
+        phoneInput.addEventListener('beforeinput', function (e) {
+            let rawDigits = this.value.replace(/\D/g, ''); // Оставляем только цифры
 
-            if (e.inputType === "deleteContentBackward" && this.value.endsWith(" ")) {
-                this.value = this.value.slice(0, -1);
-                start--; // Корректируем позицию каретки при удалении пробела
+            // Если пытаются ввести цифру, а уже 12 цифр – запрещаем ввод
+            if (rawDigits.length >= 12 && /\d/.test(e.data)) {
+                e.preventDefault();
             }
+        });
 
+        phoneInput.addEventListener('input', function () {
+            let rawDigits = this.value.replace(/\D/g, ''); // Убираем все нецифровые символы
+            let cursorPos = this.selectionStart; // Запоминаем позицию каретки
+
+            // Формируем форматированный номер
             let formattedValue = '+38';
+            if (rawDigits.length > 2) formattedValue += ' ' + rawDigits.slice(2, 5);
+            if (rawDigits.length > 5) formattedValue += ' ' + rawDigits.slice(5, 8);
+            if (rawDigits.length > 8) formattedValue += ' ' + rawDigits.slice(8, 10);
+            if (rawDigits.length > 10) formattedValue += ' ' + rawDigits.slice(10, 12);
 
-            if (rawValue.length > 2) formattedValue += ' ' + rawValue.slice(2, 5);
-            if (rawValue.length > 5) formattedValue += ' ' + rawValue.slice(5, 8);
-            if (rawValue.length > 8) formattedValue += ' ' + rawValue.slice(8, 10);
-            if (rawValue.length > 10) formattedValue += ' ' + rawValue.slice(10, 12);
-
-            // Определяем разницу в длине
-            let diff = formattedValue.length - this.value.length;
+            // Запоминаем количество цифр до курсора
+            let digitsBeforeCursor = this.value.slice(0, cursorPos).replace(/\D/g, '').length;
 
             this.value = formattedValue;
 
-            // Корректируем позицию каретки
-            this.setSelectionRange(start + diff, start + diff);
+            // Определяем новую позицию каретки
+            let newCursorPos = 3; // Начинаем после +38
+            let digitCount = 0;
+
+            for (let i = 0; i < formattedValue.length; i++) {
+                if (/\d/.test(formattedValue[i])) digitCount++;
+                if (digitCount === digitsBeforeCursor) {
+                    newCursorPos = i + 1;
+                    break;
+                }
+            }
+
+            // Если курсор случайно оказался перед "+38", перемещаем его после
+            if (newCursorPos < 3) newCursorPos = 3;
+
+            this.setSelectionRange(newCursorPos, newCursorPos);
         });
+
+        phoneInput.addEventListener('click', function () {
+            // Если пользователь кликает перед "+38", перемещаем курсор после
+            if (this.selectionStart < 3) {
+                this.setSelectionRange(3, 3);
+            }
+        });
+
 
 
         //calendar
