@@ -210,68 +210,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // validation
-        function validateInputs(form) {
-            let isValid = true;
-            let hasWarning = false;
-
-            allInputs.forEach(input => {
-                if (input === telegramInput) {
-                    return;
-                }
-
-                if (input.type === "date" && input.value === "2000-01-01") {
-                    input.classList.add('warning');
-                    hasWarning = true;
-                    isValid = false;
-                } else if (input.value.trim() === "" || (input.classList.contains('form__input-phone') && !/^\+38\s*\d{3}\s*\d{3}\s*\d{2}\s*\d{2}$/.test(input.value))) {
-                    input.classList.add('warning');
-                    hasWarning = true;
-                    isValid = false;
-                } else if (input.classList.contains('form__input-region') && input.value === "") {
-                    input.classList.add('warning');
-                    hasWarning = true;
-                    isValid = false;
-                } else if (input.classList.contains('form__input-checkbox') && !input.checked) {
-                    input.classList.add('warning');
-                    hasWarning = true;
-                    isValid = false;
-                } else if (input.classList.contains('form__input-radio')) {
-                    const isRadioChecked = Array.from(radioInputs).some(radio => radio.checked);
-                    if (!isRadioChecked) {
-                        radioInputs.forEach(radio => radio.classList.add('warning'));
-                        hasWarning = true;
-                        isValid = false;
-                    } else {
-                        radioInputs.forEach(radio => radio.classList.remove('warning'));
-                    }
-                } else {
-                    input.classList.remove('warning');
-                }
-            });
-
-            if (hasWarning) {
-                formWarning.classList.add('visible');
-            } else {
-                formWarning.classList.remove('visible');
-            }
-
-            if (isValid) {
-                submitButton.classList.remove('warning');
-            } else {
-                submitButton.classList.add('warning');
-            }
-            return isValid
-        }
-
 
         function  checkValid(){
             let isValid = false
             const warnings = form.querySelectorAll(".warning");
             warnings.forEach(warning => warning.classList.remove("warning")); // Очистити попередні помилки
 
-            // Функція для додавання попередження
             const addWarning = (input, message) => {
-                // console.log(input)
 
                 isValid = false;
                 input.classList.add("warning");
@@ -321,7 +266,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 secondNameValid = true
             }
 
-            // Валідація телефону
             const phone = form.querySelector(".form__input-phone");
             if (!phone.value.trim() || !/^\+38\s?\d{3}\s?\d{3}\s?\d{2}\s?\d{2}$/.test(phone.value)) {
                 addWarning(phone, "Номер телефону обов'язковий");
@@ -330,7 +274,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 phoneValid = true
             }
 
-            // Валідація дати народження
             const birthDate = form.querySelector(".form__input-date");
             if (!birthDate.value || birthDate.value === "2000-01-01") {
                 addWarning(birthDate, "Дата народження обов'язкова");
@@ -338,7 +281,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 birthDateValid = true
             }
 
-            // Валідація військовослужбовця
             const isMilitary = form.querySelector(".form__input-radio:checked");
             if (!isMilitary){
                 addWarning(form.querySelector(".form__radio-group"), "Оберіть варіант");
@@ -346,7 +288,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 isMilitaryValid = true
             }
 
-            // Валідація згоди на обробку даних
             const consent = form.querySelector(".form__input-checkbox");
             if (!consent.checked) {
                 addWarning(consent, "Ви повинні погодитися з обробкою даних");
@@ -373,14 +314,21 @@ document.addEventListener("DOMContentLoaded", () => {
         forms.forEach(form => {
             form.addEventListener("submit", (event) => {
                 event.preventDefault(); // Заблокувати стандартну відправку
-                // validateInputs(form)
-                let isValid = checkValid()
-                console.log(isValid)
 
+                let isValid = checkValid();
+                console.log(isValid);
+
+                // Перевірка каптчі
+                const recaptchaResponse = grecaptcha.getResponse(); // Отримуємо відповідь з каптчі
+                if (recaptchaResponse.length === 0) {
+                    alert("Будь ласка, пройдіть перевірку reCAPTCHA.");
+                    document.querySelector('.content').classList.add('hidden'); // Сховати контент
+                    document.querySelector('.recaptcha').style.display = 'block'; // Показати каптчу
+                    return; // Якщо каптча не пройдена, не відправляємо форму
+                }
 
                 if (isValid) {
-                    console.log("dsad")
-                    const formData = new FormData(form); //
+                    const formData = new FormData(form);
 
                     const successMessage = form.querySelector('.form__success');
                     if (successMessage) {
@@ -421,10 +369,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                 }
                             } else {
                                 // Показати повідомлення про помилку
-                                // if (errorMessage) {
-                                //     errorMessage.textContent = "Помилка при відправці форми. Спробуйте ще раз.";
-                                //     errorMessage.classList.add('visible');
-                                // }
                             }
                         })
                         .catch(error => {
@@ -438,6 +382,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         });
+
 
     });
 });

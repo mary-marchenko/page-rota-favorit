@@ -4,6 +4,7 @@ doctype html
 html(lang="ua")
     head
         meta(charset='utf-8')
+        meta(http-equiv="Content-Security-Policy" content="frame-ancestors 'self' https://www.google.com;")
         title #{title}
         meta(content="width=device-width, initial-scale=1" name="viewport")
         link(rel="shortcut icon" href="img/favicon.ico" type="image/x-icon")
@@ -13,6 +14,8 @@ html(lang="ua")
             function onloadCallback() {
                 document.querySelector('.loader').style.display = 'block';
                 document.querySelector('#recaptcha1').style.display = 'none';
+                document.querySelector('body').style.overflow = "hidden"
+
 
                 setTimeout(()=>{
                     document.querySelector('.loader').style.display = 'none';
@@ -31,6 +34,7 @@ html(lang="ua")
                 setTimeout(()=>{
                     document.querySelector('.recaptcha').style.display = 'none';
                     document.querySelector('.page').classList.remove('hidden');
+                    document.querySelector('body').style.overflow = "auto"
                 }, 1000)
 
             }
@@ -39,5 +43,5 @@ html(lang="ua")
 
     body
         block content
-        script(src='js/main.js?v=6')
+        script(src='js/main.js?v=8')
 
