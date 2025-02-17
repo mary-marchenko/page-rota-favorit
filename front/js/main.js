@@ -295,7 +295,6 @@ document.addEventListener("DOMContentLoaded", () => {
             let consentValid = false
 
 
-            // Валідація текстових полів
             const surname = form.querySelector(".form__input-surname");
             surname.addEventListener("input", () =>{
                 if (!surname.value.trim()) addWarning(surname, "Прізвище обов'язкове");
@@ -408,7 +407,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     })
                         .then(response => response.text())
                         .then(data => {
-                            // console.log(data); // Вивести відповідь від сервера
+                            console.log(data); // Вивести відповідь від сервера
 
                             const successMessage = form.querySelector('.form__success');
                             const errorMessage = form.querySelector('.form__warning');

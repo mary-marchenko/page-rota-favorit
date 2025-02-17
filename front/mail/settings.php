@@ -6,10 +6,10 @@ return [
         'auth' => true,
         'port' => 465, // 587
         'secure' => 'ssl', // tls
-        'username' => 'gnatykayura@gmail.com',
-        'password' => 'vzmn qlyq ufji kwks',
+        'username' => 'favoritrota@gmail.com',
+        'password' => 'omls rczi mdri bixl',
         'charset' => 'UTF-8',
-        'from_email' => 'gnatykayura@gmail.com',
+        'from_email' => 'favoritrota@gmail.com',
         'from_name' => 'Rota Favorit',
         'is_html' => true,
     ],

@@ -19,21 +19,97 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $consent = isset($_POST['consent']) ? 'Так' : 'Ні';
 
     // Визначення пошти отримувача
-    $to_email = ($isMilitary === 'yes') ? 'ignatovyw@gmail.com' : 'gnatykayura@gmail.com';
+    $to_email = ($isMilitary === 'yes') ? 'pipidon2000@ukr.net' : 'gnatykayura@gmail.com';
 
     // Формування тіла листа
-    $body = "
-        <h1>Нова заявка</h1>
-        <p><strong>Прізвище:</strong> $surname</p>
-        <p><strong>Ім'я:</strong> $firstName</p>
-        <p><strong>По-батькові:</strong> $middleName</p>
-        <p><strong>Номер телефону:</strong> $phone</p>
-        <p><strong>Дата народження:</strong> $birthDate</p>
-        <p><strong>Нік в телеграмі:</strong> $telegramNick</p>
-        <p><strong>Регіон:</strong> $region</p>
-        <p><strong>Військовослужбовець:</strong> " . ($isMilitary === 'yes' ? 'Так' : 'Ні') . "</p>
-        <p><strong>Згода на обробку даних:</strong> $consent</p>
-    ";
+   $body = "
+       <html>
+       <head>
+           <style>
+               body {
+                   font-family: Arial, sans-serif;
+                   background-color: #f4f4f4;
+                   margin: 0;
+                   padding: 0;
+               }
+               .container {
+                   max-width: 600px;
+                   margin: 20px auto;
+                   padding: 20px;
+                   background: #fff;
+                   border-radius: 10px;
+                   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+               }
+               h2 {
+                   color: #007BFF;
+                   text-align: center;
+                   border-bottom: 2px solid #007BFF;
+                   padding-bottom: 10px;
+               }
+               table {
+                   width: 100%;
+                   border-collapse: collapse;
+                   margin-top: 20px;
+               }
+               td {
+                   padding: 10px;
+                   border-bottom: 1px solid #ddd;
+               }
+               .label {
+                   font-weight: bold;
+                   color: #333;
+               }
+               .value {
+                   color: #555;
+               }
+           </style>
+       </head>
+       <body>
+           <div class='container'>
+               <h2>Нова заявка Rota Favorit</h2>
+               <table>
+                   <tr>
+                       <td class='label'>Прізвище:</td>
+                       <td class='value'>$surname</td>
+                   </tr>
+                   <tr>
+                       <td class='label'>Ім'я:</td>
+                       <td class='value'>$firstName</td>
+                   </tr>
+                   <tr>
+                       <td class='label'>По-батькові:</td>
+                       <td class='value'>$middleName</td>
+                   </tr>
+                   <tr>
+                       <td class='label'>Номер телефону:</td>
+                       <td class='value'>$phone</td>
+                   </tr>
+                   <tr>
+                       <td class='label'>Дата народження:</td>
+                       <td class='value'>$birthDate</td>
+                   </tr>
+                   <tr>
+                       <td class='label'>Нік в телеграмі:</td>
+                       <td class='value'>$telegramNick</td>
+                   </tr>
+                   <tr>
+                       <td class='label'>Регіон:</td>
+                       <td class='value'>$region</td>
+                   </tr>
+                   <tr>
+                       <td class='label'>Військовослужбовець:</td>
+                       <td class='value'>" . ($isMilitary === 'yes' ? 'Так' : 'Ні') . "</td>
+                   </tr>
+                   <tr>
+                       <td class='label'>Згода на обробку даних:</td>
+                       <td class='value'>$consent</td>
+                   </tr>
+               </table>
+           </div>
+       </body>
+       </html>
+   ";
+
 
     // Відправка листа
     $result = send_mail($settings['mail_settings_prod'], [$to_email], 'Нова заявка', $body);
